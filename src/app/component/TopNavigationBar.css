@@ -1,0 +1,40 @@
+.top-navi-bar {
+    height: 100%;
+    width: 100%;
+}
+
+.top-navi-bar-img-space {
+    width: 20vw
+}
+
+.top-navi-bar-white-space {
+    width: 42vw
+}
+
+.top-navi-bar-button-space {
+    height: 100%;
+    width: 25vw;
+}
+
+.top-navi-bar-button {
+    height: 80%;
+    color: black;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.top-navi-bar-user-space {
+    width: 12vw;
+}
+
+.top-navi-bar-user-space-avatar {
+    width: 4vw;
+}
+
+.top-navi-bar-user-space-name {
+    width: 5vw;
+}
+
+.top-navi-bar-user-space-logout {
+    width: 2vw;
+}
