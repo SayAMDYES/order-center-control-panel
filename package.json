@@ -1,6 +1,7 @@
 {
   "name": "order-center-control-panel",
   "version": "0.1.0",
+  "homepage": "/order-center-control-panel/",
   "private": true,
   "scripts": {
     "dev": "next dev",
