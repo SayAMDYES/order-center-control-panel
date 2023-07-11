@@ -22,6 +22,14 @@ body {
     ) rgb(var(--background-start-rgb));
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+}
+
 .top-navigation-bar {
     height: 4.3vh;
     width: 100vw;
