@@ -22,18 +22,6 @@ export default function TopNavigationBar() {
             <div className={"top-navi-bar-button-space flex items-center justify-end"}>
                 <Button type="link"
                         className={"top-navi-bar-button"}>
-                    Ready To Process
-                </Button>
-                <Button type="link"
-                        className={"top-navi-bar-button"}>
-                    Recent Alerts
-                </Button>
-                <Button type="link"
-                        className={"top-navi-bar-button"}>
-                    Notification
-                </Button>
-                <Button type="link"
-                        className={"top-navi-bar-button"}>
                     Console
                 </Button>
             </div>
