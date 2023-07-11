@@ -1,0 +1,55 @@
+$logo-space-width: 20vw;
+$button-space-width: 27vw;
+$user-space-width: 12vw;
+$white-space-width: 100vw - $logo-space-width - $button-space-width - $user-space-width - 2vw;
+
+.top-navi-bar {
+  height: 100%;
+  width: 100%;
+
+  .top-navi-bar-img-space {
+    width: $logo-space-width
+  }
+
+  .top-navi-bar-white-space {
+    width: $white-space-width
+  }
+
+  .top-navi-bar-button-space {
+    height: 100%;
+    width: $button-space-width
+  }
+}
+
+
+.top-navi-bar-button {
+  height: 80%;
+  color: black;
+  font-size: 0.7vw;
+  line-height: 1vh;
+}
+
+.top-navi-bar-user-space {
+  width: $user-space-width;
+}
+
+$top-navi-bar-user-space-name-width: 5vw;
+$top-navi-bar-user-space-logout-width: 2vw;
+$top-navi-bar-user-space-empty-width: $user-space-width - $top-navi-bar-user-space-name-width - $top-navi-bar-user-space-logout-width;
+
+.top-navi-bar-user-space-empty {
+  width: $top-navi-bar-user-space-empty-width;
+}
+
+.top-navi-bar-user-space-name {
+  width: $top-navi-bar-user-space-name-width;
+  font-size: 0.7vw;
+}
+
+.top-navi-bar-user-space-logout {
+  width: $top-navi-bar-user-space-logout-width;
+}
+
+.top-navi-bar-user-space-logout-button {
+  font-size: 0.7vw;
+}
