@@ -44,12 +44,12 @@ $app-container-height: 100vh - $top-navigation-bar-height;
   height: $app-container-height;
   width: 100vw;
 
-  $app-navi-width: 8vw;
+  $app-navi-width: 12vw;
 
   .app-navi {
     width: $app-navi-width;
-    max-width: 200px;
-    min-width: 150px;
+    max-width: 250px;
+    min-width: 170px;
     height: inherit;
   }
 
