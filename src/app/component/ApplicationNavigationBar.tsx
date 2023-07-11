@@ -71,7 +71,6 @@ const App: React.FC = () => {
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             items={items}
-            style={{fontWeight: 500}}
             className={"app-navi-menu"}
             onClick={clickHandler}
         />
