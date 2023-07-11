@@ -1,8 +1,8 @@
 'use client';
 
-import './TopNavigationBar.css';
+import './TopNavigationBar.scss';
 import {useRouter} from "next/navigation";
-import {Avatar, Button} from "antd";
+import {Button} from "antd";
 
 export default function TopNavigationBar() {
     const router = useRouter()
@@ -19,7 +19,7 @@ export default function TopNavigationBar() {
                 />
             </div>
             <div className={"top-navi-bar-white-space"}></div>
-            <div className={"top-navi-bar-button-space flex items-center"}>
+            <div className={"top-navi-bar-button-space flex items-center justify-end"}>
                 <Button type="link"
                         className={"top-navi-bar-button"}>
                     Ready To Process
@@ -38,17 +38,15 @@ export default function TopNavigationBar() {
                 </Button>
             </div>
             <div className={"top-navi-bar-user-space flex"}>
-                <div className={"top-navi-bar-user-space-avatar flex justify-center items-center"}>
-                    <Avatar shape={"square"}
-                            src={"/avatar.png"}/>
+                <div className={"top-navi-bar-user-space-empty"}>
                 </div>
                 <div
                     className={"top-navi-bar-user-space-name font-light flex justify-start items-center overflow-hidden whitespace-nowrap overflow-ellipsis"}>
                     Quasar
                 </div>
-                <div className={"top-navi-bar-user-space-logout text-base flex justify-center items-center pl-3"}>
+                <div className={"top-navi-bar-user-space-logout text-base flex justify-center items-center"}>
                     <Button type="link"
-                            className={"font-bold text-blue-700"}>
+                            className={"top-navi-bar-user-space-logout-button font-bold text-blue-700"}>
                         Logout
                     </Button>
                 </div>

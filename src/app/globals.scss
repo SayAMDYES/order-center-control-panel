@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+                  to bottom,
+                  transparent,
+                  rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb));
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+}
+
+$top-navigation-bar-height: 4.3vh;
+$app-container-height: 100vh - $top-navigation-bar-height;
+
+.top-navigation-bar {
+  height: $top-navigation-bar-height;
+  width: 100vw;
+  border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+}
+
+
+.app-container {
+  height: $app-container-height;
+  width: 100vw;
+
+  $app-navi-width: 8vw;
+
+  .app-navi {
+    width: $app-navi-width;
+    max-width: 200px;
+    min-width: 150px;
+    height: inherit;
+  }
+
+  .app-page {
+    width: 100vw - $app-navi-width;
+    height: inherit;
+  }
+}
