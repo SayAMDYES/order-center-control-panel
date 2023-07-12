@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} from 'axios';
+import {OrderCenterRespDto} from "@/app/api/entity/common";
 
 interface RequestConfig extends AxiosRequestConfig {
     showLoading?: boolean;
@@ -32,20 +33,22 @@ instance.interceptors.response.use(
 
 class Http {
     static get<T>(url: string, config?: RequestConfig): Promise<T> {
+        // @ts-ignore
         return instance.get<OrderCenterRespDto<T>>(url, config).then((res) => {
             if (res.data.code !== 0) {
-                return Promise.reject(res.data.msg);
+                return Promise.reject(res.data.message);
             }
-            return res.data.data;
+            return res.data;
         });
     }
 
     static post<T>(url: string, data?: any, config?: RequestConfig): Promise<T> {
+        // @ts-ignore
         return instance.post<OrderCenterRespDto<T>>(url, data, config).then((res) => {
             if (res.data.code !== 0) {
-                return Promise.reject(res.data.msg);
+                return Promise.reject(res.data.message);
             }
-            return res.data.data;
+            return res.data;
         });
     }
 }
