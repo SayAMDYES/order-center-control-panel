@@ -58,3 +58,13 @@ $app-container-height: 100vh - $top-navigation-bar-height;
     height: inherit;
   }
 }
+
+.confirm-button {
+  background-color: rgb(22, 119, 255);
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: rgb(82, 155, 255);
+  color: white !important;
+}
