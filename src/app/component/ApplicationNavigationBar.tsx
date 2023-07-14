@@ -38,7 +38,7 @@ const items: MenuItem[] = [
     ]),
     getItem('Commodity', 'commodity', <ShoppingOutlined/>, [
         getItem('Query Commodity', '/commodity/query'),
-        getItem('Add New Commodity', '/commodity/add-new'),
+        getItem('New Commodity', '/commodity/add-new'),
     ]),
 ];
 
