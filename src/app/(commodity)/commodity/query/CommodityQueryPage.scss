@@ -1,0 +1,31 @@
+.query-commodity-page-container {
+  margin: 1%;
+  height: 100%;
+  width: 100%;
+
+  .divider {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 0;
+  }
+
+  $submit-container-height: 15%;
+  $result-container-height: (100% - $submit-container-height);
+
+  .submit-container {
+    height: $submit-container-height;
+
+    .form {
+      .row {
+        .margin-left-form-item {
+          margin-left: 3%;
+        }
+      }
+    }
+  }
+
+  .result-container {
+    height: $result-container-height;
+    overflow: auto;
+  }
+}

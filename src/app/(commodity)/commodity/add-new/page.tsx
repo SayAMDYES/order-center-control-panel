@@ -7,7 +7,10 @@ import {EditOutlined} from "@ant-design/icons";
 import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
 
 export default function NewCommodityPage() {
-    const channelOption = ["Express", "CityDelivery"]
+    const channelOption = [
+        {value: 1, label: "Express"},
+        {value: 2, label: "CityDelivery"}
+    ]
 
     const onFinish = (reqDto: CommodityCreateReqDto) => {
         console.log('Success:', reqDto);

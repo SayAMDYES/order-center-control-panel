@@ -110,16 +110,14 @@ class CommodityQueryReqDto extends OrderCenterQueryReqDto {
     name: string | null;
     sellChannel: number | null;
     status: number | null;
-    beginCreateTime: string | null;
-    endCreateTime: string | null;
+    createTime: string[] | null;
 
-    constructor(currentPage: number, pageSize: number, name?: string, sellChannel?: number, status?: number, beginCreateTime?: string, endCreateTime?: string) {
+    constructor(currentPage: number, pageSize: number, name?: string, sellChannel?: number, status?: number, createTime?: string[]) {
         super(currentPage, pageSize);
         this.name = name ? name : null;
         this.sellChannel = sellChannel ? sellChannel : null;
         this.status = status ? status : null;
-        this.beginCreateTime = beginCreateTime ? beginCreateTime : null;
-        this.endCreateTime = endCreateTime ? endCreateTime : null;
+        this.createTime = createTime ? createTime : [];
     }
 }
 
