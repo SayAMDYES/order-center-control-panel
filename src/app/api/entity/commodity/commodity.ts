@@ -106,24 +106,24 @@ class CommodityDeleteReqDto extends OrderCenterReqDto {
 class CommodityDeleteRespDto extends OrderCenterRespDto<null> {
 }
 
-class CommoditiesQueryReqDto extends OrderCenterQueryReqDto {
-    name?: string;
-    sellChannel?: number;
-    status?: number;
-    beginCreateTime?: string;
-    endCreateTime?: string;
+class CommodityQueryReqDto extends OrderCenterQueryReqDto {
+    name: string | null;
+    sellChannel: number | null;
+    status: number | null;
+    beginCreateTime: string | null;
+    endCreateTime: string | null;
 
     constructor(currentPage: number, pageSize: number, name?: string, sellChannel?: number, status?: number, beginCreateTime?: string, endCreateTime?: string) {
         super(currentPage, pageSize);
-        this.name = name;
-        this.sellChannel = sellChannel;
-        this.status = status;
-        this.beginCreateTime = beginCreateTime;
-        this.endCreateTime = endCreateTime;
+        this.name = name ? name : null;
+        this.sellChannel = sellChannel ? sellChannel : null;
+        this.status = status ? status : null;
+        this.beginCreateTime = beginCreateTime ? beginCreateTime : null;
+        this.endCreateTime = endCreateTime ? endCreateTime : null;
     }
 }
 
-class CommoditiesQueryRespDto extends OrderCenterQueryRespDto<CommodityDto> {
+class CommodityQueryRespDto extends OrderCenterQueryRespDto<CommodityDto> {
 }
 
 export {
@@ -133,6 +133,6 @@ export {
     CommodityUpdateRespDto,
     CommodityDeleteReqDto,
     CommodityDeleteRespDto,
-    CommoditiesQueryReqDto,
-    CommoditiesQueryRespDto,
+    CommodityQueryReqDto,
+    CommodityQueryRespDto,
 }
