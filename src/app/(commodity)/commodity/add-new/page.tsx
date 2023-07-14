@@ -18,7 +18,7 @@ export default function NewCommodityPage() {
     };
 
     return (
-        <div className={"commodity-add-new-page-container"}>
+        <div className={"new-commodity-page-container"}>
             <div className={"title"}>New commodity information <EditOutlined/></div>
             <Divider className={"divider"}/>
             <Form
