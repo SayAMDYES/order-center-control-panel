@@ -3,7 +3,6 @@ import {OrderCenterReqDto, OrderCenterRespDto} from "@/app/api/entity/common";
 class CommodityDto {
     id: number;
     name: string;
-    realPrice: number;
     price?: number;
     description?: string;
     image?: string;
@@ -15,7 +14,6 @@ class CommodityDto {
 
     constructor(id: number,
                 name: string,
-                realPrice: number,
                 price?: number,
                 description?: string,
                 image?: string,
@@ -27,7 +25,6 @@ class CommodityDto {
                 updateTime?: string) {
         this.id = id;
         this.name = name;
-        this.realPrice = realPrice;
         this.price = price;
         this.description = description;
         this.image = image;
@@ -41,27 +38,27 @@ class CommodityDto {
 
 class CommodityCreateReqDto implements OrderCenterReqDto {
     name: string;
-    realPrice: number;
     price?: number;
     description?: string;
     image?: string;
-    stock?: number;
+    stock: number;
     sellChannel: number[];
+    status: number;
 
     constructor(name: string,
-                realPrice: number,
                 price?: number,
                 description?: string,
                 image?: string,
                 stock?: number,
-                sellChannel?: number[]) {
+                sellChannel?: number[],
+                status?: number) {
         this.name = name;
-        this.realPrice = realPrice;
         this.price = price;
         this.description = description;
         this.image = image;
-        this.stock = stock;
+        this.stock = stock ? stock : 0;
         this.sellChannel = sellChannel ? sellChannel : [];
+        this.status = status ? status : 0;
     }
 }
 
@@ -78,13 +75,12 @@ class CommodityUpdateReqDto extends CommodityCreateReqDto {
     constructor(id: number,
                 status: number,
                 name: string,
-                realPrice: number,
                 price: number,
                 description: string,
                 image: string,
                 stock: number,
                 sellChannel: number[]) {
-        super(name, realPrice, price, description, image, stock, sellChannel);
+        super(name, price, description, image, stock, sellChannel);
         this.id = id;
         this.status = status;
     }
