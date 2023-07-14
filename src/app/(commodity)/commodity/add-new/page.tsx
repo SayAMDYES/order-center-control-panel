@@ -1,12 +1,14 @@
 'use client';
 
 import '@/app/api/entity/commodity/commodity';
-import './CommodityAddNewPage.scss';
-import {Button, Divider, Form, Input, InputNumber, Space} from "antd";
+import './NewCommodityPage.scss';
+import {Button, Checkbox, Divider, Form, Input, InputNumber, Radio, Space} from "antd";
 import {EditOutlined} from "@ant-design/icons";
 import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
 
-export default function CommodityAddNewPage() {
+export default function NewCommodityPage() {
+    const channelOption = ["Express", "CityDelivery"]
+
     const onFinish = (reqDto: CommodityCreateReqDto) => {
         console.log('Success:', reqDto);
     };
