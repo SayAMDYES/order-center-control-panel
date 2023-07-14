@@ -25,7 +25,7 @@ export default function NewCommodityPage() {
                 name="basic"
                 labelCol={{span: 8}}
                 wrapperCol={{span: 16}}
-                style={{maxWidth: 600}}
+                style={{maxWidth: 800}}
                 initialValues={{remember: false}}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -44,15 +44,66 @@ export default function NewCommodityPage() {
                     name="price"
                     rules={[{required: true, message: 'Please input price'}]}
                 >
-                    <InputNumber/>
+                    <InputNumber min={0} precision={2}/>
                 </Form.Item>
 
                 <Form.Item
-                    label="RealPrice"
-                    name="realPrice"
-                    rules={[{required: false, message: 'Please input real price'}]}
+                    label="Description"
+                    name="description"
+                    rules={[{required: false, message: 'Please input description'}]}
                 >
-                    <InputNumber/>
+                    <Input.TextArea
+                        showCount
+                        allowClear
+                        autoSize={true}
+                        maxLength={200}
+                        style={{resize: 'none'}}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    label="Image URL"
+                    name="image"
+                    rules={[{required: false, message: 'Please input image url'}]}
+                >
+                    <Input.TextArea
+                        showCount
+                        allowClear
+                        autoSize={true}
+                        maxLength={200}
+                        style={{resize: 'none'}}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    label="Stock"
+                    name="stock"
+                    rules={[{required: false, message: 'Please input stock'}]}
+                >
+                    <InputNumber defaultValue={0} min={0} precision={0}/>
+                </Form.Item>
+
+                <Form.Item
+                    label="SellChannel"
+                    name="sellChannel"
+                    rules={[{required: true, message: 'Please choose sell channel'}]}
+                >
+                    <Checkbox.Group
+                        options={channelOption}
+                    />
+                </Form.Item>
+
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[{required: false, message: 'Please choose status'}]}
+                >
+                    <Radio.Group defaultValue={0}>
+                        <Radio value={0}>In Stock</Radio>
+                        <Radio value={1}>On Sale</Radio>
+                        <Radio value={2}>Out Of Stock</Radio>
+                        <Radio value={3}>Discontinued</Radio>
+                    </Radio.Group>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{offset: 8, span: 16}}>
