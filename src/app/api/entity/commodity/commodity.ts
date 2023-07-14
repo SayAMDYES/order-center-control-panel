@@ -1,4 +1,9 @@
-import {OrderCenterReqDto, OrderCenterRespDto} from "@/app/api/entity/common";
+import {
+    OrderCenterQueryReqDto,
+    OrderCenterQueryRespDto,
+    OrderCenterReqDto,
+    OrderCenterRespDto
+} from "@/app/api/entity/common";
 
 class CommodityDto {
     id: number;
@@ -101,4 +106,33 @@ class CommodityDeleteReqDto extends OrderCenterReqDto {
 class CommodityDeleteRespDto extends OrderCenterRespDto<null> {
 }
 
-export {CommodityCreateReqDto, CommodityUpdateReqDto}
+class CommoditiesQueryReqDto extends OrderCenterQueryReqDto {
+    name?: string;
+    sellChannel?: number;
+    status?: number;
+    beginCreateTime?: string;
+    endCreateTime?: string;
+
+    constructor(currentPage: number, pageSize: number, name?: string, sellChannel?: number, status?: number, beginCreateTime?: string, endCreateTime?: string) {
+        super(currentPage, pageSize);
+        this.name = name;
+        this.sellChannel = sellChannel;
+        this.status = status;
+        this.beginCreateTime = beginCreateTime;
+        this.endCreateTime = endCreateTime;
+    }
+}
+
+class CommoditiesQueryRespDto extends OrderCenterQueryRespDto<CommodityDto> {
+}
+
+export {
+    CommodityCreateReqDto,
+    CommodityCreateRespDto,
+    CommodityUpdateReqDto,
+    CommodityUpdateRespDto,
+    CommodityDeleteReqDto,
+    CommodityDeleteRespDto,
+    CommoditiesQueryReqDto,
+    CommoditiesQueryRespDto,
+}
