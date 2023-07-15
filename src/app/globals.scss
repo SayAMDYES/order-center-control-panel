@@ -65,6 +65,16 @@ $app-container-height: 100vh - $top-navigation-bar-height;
 }
 
 .confirm-button:hover {
-  background-color: rgb(82, 155, 255);
+  background-color: rgb(118, 178, 255);
+  color: white !important;
+}
+
+.warning-button {
+  background-color: rgb(255, 59, 48);
+  color: white !important;
+}
+
+.warning-button:hover {
+  background-color: rgb(255, 139, 127);
   color: white !important;
 }

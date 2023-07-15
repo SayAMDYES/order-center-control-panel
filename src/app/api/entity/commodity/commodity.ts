@@ -125,6 +125,7 @@ class CommodityQueryRespDto extends OrderCenterQueryRespDto<CommodityDto> {
 }
 
 export {
+    CommodityDto,
     CommodityCreateReqDto,
     CommodityCreateRespDto,
     CommodityUpdateReqDto,

@@ -4,8 +4,7 @@
   width: 100%;
 
   .divider {
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin: 0;
     padding: 0;
   }
 
@@ -27,5 +26,13 @@
   .result-container {
     height: $result-container-height;
     overflow: auto;
+
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+
+      .pagination {
+      }
+    }
   }
 }
