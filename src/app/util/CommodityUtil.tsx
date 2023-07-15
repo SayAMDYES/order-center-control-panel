@@ -1,0 +1,88 @@
+import {Tag} from "antd";
+
+function getSellChannel(value: number): string {
+    switch (value) {
+        case 1:
+            return 'Express';
+        case 2:
+            return 'CityDelivery'
+        default:
+            return 'Unknown';
+    }
+}
+
+function getSellChannels(value: number[]): string[] {
+    let result: string[] = [];
+    value.forEach(item => {
+        result.push(getSellChannel(item));
+    })
+    return result;
+}
+
+function getSellChannelTag(value: number) {
+    let str = getSellChannel(value)
+    switch (str) {
+        case 'Express':
+            return (<Tag color="blue"
+                         key={str}>
+                {str}
+            </Tag>);
+        case 'CityDelivery':
+            return (<Tag color="green" key={str}>
+                {str}
+            </Tag>);
+        default:
+            return (<Tag color="red" key={str}>
+                {str}
+            </Tag>);
+    }
+}
+
+function getStatus(value: number): string {
+    switch (value) {
+        case 0:
+            return 'In Stock';
+        case 1:
+            return 'On Sale'
+        case 2:
+            return 'Out Of Stock'
+        case 3:
+            return 'Discontinued'
+        default:
+            return 'Unknown';
+    }
+}
+
+function getStatusTag(value: number) {
+    let str = getStatus(value)
+    switch (str) {
+        case 'In Stock':
+            return (<Tag color="blue"
+                         key={str}>
+                {str}
+            </Tag>);
+        case 'On Sale':
+            return (<Tag color="green" key={str}>
+                {str}
+            </Tag>);
+        case 'Out Of Stock':
+            return (<Tag color="orange" key={str}>
+                {str}
+            </Tag>);
+        case 'Discontinued':
+            return (<Tag color="red" key={str}>
+                {str}
+            </Tag>);
+        default:
+            return (<Tag color="red" key={str}>
+                {str}
+            </Tag>);
+    }
+}
+
+export {
+    getSellChannel,
+    getSellChannels,
+    getSellChannelTag,
+    getStatusTag
+}

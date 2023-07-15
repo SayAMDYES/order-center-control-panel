@@ -1,10 +1,11 @@
 'use client';
 
 import './CommodityQueryPage.scss';
-import {Button, DatePicker, Divider, Form, Input, Pagination, Row, Select, Space, Table, Tag} from "antd";
+import {Button, DatePicker, Divider, Form, Input, Pagination, Row, Select, Space, Table} from "antd";
 import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
 import {useState} from "react";
+import {getSellChannelTag, getStatusTag} from "@/app/util/CommodityUtil";
 
 function sleep(ms: number) {
     return new Promise<void>((resolve) => {
@@ -51,9 +52,6 @@ export default function CommodityQueryPage() {
         loadDataSource(queryReqDto)
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-    };
-
     const {RangePicker} = DatePicker;
 
     const editFunc = (commodity: CommodityDto) => {
@@ -79,7 +77,6 @@ export default function CommodityQueryPage() {
                 <Form layout={"horizontal"}
                       style={{maxWidth: '100%'}}
                       onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
                       autoComplete="off"
                       className={"form"}>
                     <Row className={"row"}>
@@ -164,13 +161,16 @@ export default function CommodityQueryPage() {
                             render={(tags: number[]) => (
                                 <>
                                     {tags.map((tag) => (
-                                        <Tag color="blue" key={tag}>
-                                            {tag}
-                                        </Tag>
+                                        getSellChannelTag(tag)
                                     ))}
                                 </>
                             )}/>
-                    <Column title="Status" dataIndex="status" key="status"/>
+                    <Column title="Status" dataIndex="status" key="status"
+                            render={(tag: number) => (
+                                <>
+                                    {getStatusTag(tag)}
+                                </>
+                            )}/>
                     <Column title="CreateTime" dataIndex="createTime" key="createTime"/>
                     <Column title="UpdateTime" dataIndex="updateTime" key="updateTime"/>
                     <Column
