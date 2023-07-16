@@ -12,7 +12,7 @@ class CommodityDto {
     description?: string;
     image?: string;
     stock?: number;
-    sellChannel: number[];
+    deliveryType: number[];
     status: number;
     createTime: string;
     updateTime?: string;
@@ -23,7 +23,7 @@ class CommodityDto {
                 description?: string,
                 image?: string,
                 stock?: number,
-                sellChannel?: number[],
+                deliveryType?: number[],
                 // @ts-ignore
                 status: number,
                 createTime: string,
@@ -34,7 +34,7 @@ class CommodityDto {
         this.description = description;
         this.image = image;
         this.stock = stock;
-        this.sellChannel = sellChannel ? sellChannel : [];
+        this.deliveryType = deliveryType ? deliveryType : [];
         this.status = status;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -47,7 +47,7 @@ class CommodityCreateReqDto implements OrderCenterReqDto {
     description?: string;
     image?: string;
     stock: number;
-    sellChannel: number[];
+    deliveryType: number[];
     status: number;
 
     constructor(name: string,
@@ -55,14 +55,14 @@ class CommodityCreateReqDto implements OrderCenterReqDto {
                 description?: string,
                 image?: string,
                 stock?: number,
-                sellChannel?: number[],
+                deliveryType?: number[],
                 status?: number) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
         this.stock = stock ? stock : 0;
-        this.sellChannel = sellChannel ? sellChannel : [];
+        this.deliveryType = deliveryType ? deliveryType : [];
         this.status = status ? status : 0;
     }
 }
@@ -84,8 +84,8 @@ class CommodityUpdateReqDto extends CommodityCreateReqDto {
                 description: string,
                 image: string,
                 stock: number,
-                sellChannel: number[]) {
-        super(name, price, description, image, stock, sellChannel);
+                deliveryType: number[]) {
+        super(name, price, description, image, stock, deliveryType);
         this.id = id;
         this.status = status;
     }
@@ -108,14 +108,14 @@ class CommodityDeleteRespDto extends OrderCenterRespDto<null> {
 
 class CommodityQueryReqDto extends OrderCenterQueryReqDto {
     name: string | null;
-    sellChannel: number | null;
+    deliveryType: number | null;
     status: number | null;
     createTime: string[] | null;
 
-    constructor(currentPage: number, pageSize: number, name?: string, sellChannel?: number, status?: number, createTime?: string[]) {
+    constructor(currentPage: number, pageSize: number, name?: string, deliveryType?: number, status?: number, createTime?: string[]) {
         super(currentPage, pageSize);
         this.name = name ? name : null;
-        this.sellChannel = sellChannel ? sellChannel : null;
+        this.deliveryType = deliveryType ? deliveryType : null;
         this.status = status ? status : null;
         this.createTime = createTime ? createTime : [];
     }

@@ -5,12 +5,12 @@ import './NewCommodityPage.scss';
 import {Button, Checkbox, Divider, Form, Input, InputNumber, Radio, Space} from "antd";
 import {EditOutlined} from "@ant-design/icons";
 import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
-import {getSellChannelDescription, getStatusDescription} from "@/app/util/CommodityUtil";
+import {getDeliveryTypeDescription, getStatusDescription} from "@/app/util/CommodityUtil";
 
 export default function NewCommodityPage() {
     const channelOption = [
-        {value: 1, label: getSellChannelDescription(1)},
-        {value: 2, label: getSellChannelDescription(2)},
+        {value: 1, label: getDeliveryTypeDescription(1)},
+        {value: 2, label: getDeliveryTypeDescription(2)},
     ]
 
     const onFinish = (reqDto: CommodityCreateReqDto) => {
@@ -88,8 +88,8 @@ export default function NewCommodityPage() {
                 </Form.Item>
 
                 <Form.Item
-                    label="SellChannel"
-                    name="sellChannel"
+                    label="DeliveryType"
+                    name="deliveryType"
                     rules={[{required: true, message: 'Please choose sell channel'}]}
                 >
                     <Checkbox.Group

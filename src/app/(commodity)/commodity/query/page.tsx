@@ -5,7 +5,7 @@ import {Button, DatePicker, Divider, Form, Input, Pagination, Row, Select, Space
 import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
 import {useState} from "react";
-import {getSellChannelTag, getStatusDescription, getStatusTag} from "@/app/util/CommodityUtil";
+import {getDeliveryTypeTag, getStatusDescription, getStatusTag} from "@/app/util/CommodityUtil";
 
 function sleep(ms: number) {
     return new Promise<void>((resolve) => {
@@ -29,7 +29,7 @@ export default function CommodityQueryPage() {
                 name: "commodity" + i,
                 price: i,
                 description: "description" + i,
-                sellChannel: [1, 2],
+                deliveryType: [1, 2],
                 status: 1,
                 createTime: "2021-01-01",
                 updateTime: "2021-01-01"
@@ -45,7 +45,7 @@ export default function CommodityQueryPage() {
 
     const onFinish = (reqDto: CommodityQueryReqDto) => {
         queryReqDto.name = reqDto.name
-        queryReqDto.sellChannel = reqDto.sellChannel
+        queryReqDto.deliveryType = reqDto.deliveryType
         queryReqDto.status = reqDto.status
         queryReqDto.createTime = reqDto.createTime
         updateQueryReqDto(queryReqDto)
@@ -88,8 +88,8 @@ export default function CommodityQueryPage() {
                         </Form.Item>
 
                         <Form.Item
-                            label="SellChannel"
-                            name="sellChannel"
+                            label="DeliveryType"
+                            name="deliveryType"
                             rules={[{required: false}]}
                             className={"margin-left-form-item"}>
                             <Select
@@ -157,11 +157,11 @@ export default function CommodityQueryPage() {
                     <Column title="Name" dataIndex="name" key="name"/>
                     <Column title="Price" dataIndex="price" key="price"/>
                     <Column title="Description" dataIndex="description" key="description"/>
-                    <Column title="SellChannel" dataIndex="sellChannel" key="sellChannel"
+                    <Column title="DeliveryType" dataIndex="deliveryType" key="deliveryType"
                             render={(tags: number[]) => (
                                 <>
                                     {tags.map((tag) => (
-                                        getSellChannelTag(tag)
+                                        getDeliveryTypeTag(tag)
                                     ))}
                                 </>
                             )}/>
