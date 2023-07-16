@@ -5,11 +5,12 @@ import './NewCommodityPage.scss';
 import {Button, Checkbox, Divider, Form, Input, InputNumber, Radio, Space} from "antd";
 import {EditOutlined} from "@ant-design/icons";
 import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
+import {getSellChannelDescription, getStatusDescription} from "@/app/util/CommodityUtil";
 
 export default function NewCommodityPage() {
     const channelOption = [
-        {value: 1, label: "Express"},
-        {value: 2, label: "CityDelivery"}
+        {value: 1, label: getSellChannelDescription(1)},
+        {value: 2, label: getSellChannelDescription(2)},
     ]
 
     const onFinish = (reqDto: CommodityCreateReqDto) => {
@@ -102,10 +103,10 @@ export default function NewCommodityPage() {
                     rules={[{required: false, message: 'Please choose status'}]}
                 >
                     <Radio.Group defaultValue={0}>
-                        <Radio value={0}>In Stock</Radio>
-                        <Radio value={1}>On Sale</Radio>
-                        <Radio value={2}>Out Of Stock</Radio>
-                        <Radio value={3}>Discontinued</Radio>
+                        <Radio value={0}>{getStatusDescription(0)}</Radio>
+                        <Radio value={1}>{getStatusDescription(1)}</Radio>
+                        <Radio value={2}>{getStatusDescription(2)}</Radio>
+                        <Radio value={3}>{getStatusDescription(3)}</Radio>
                     </Radio.Group>
                 </Form.Item>
 

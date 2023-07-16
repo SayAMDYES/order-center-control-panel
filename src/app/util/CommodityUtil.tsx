@@ -1,6 +1,6 @@
 import {Tag} from "antd";
 
-function getSellChannel(value: number): string {
+function getSellChannelDescription(value: number): string {
     switch (value) {
         case 1:
             return 'Express';
@@ -11,16 +11,16 @@ function getSellChannel(value: number): string {
     }
 }
 
-function getSellChannels(value: number[]): string[] {
+function getSellChannelDescriptions(value: number[]): string[] {
     let result: string[] = [];
     value.forEach(item => {
-        result.push(getSellChannel(item));
+        result.push(getSellChannelDescription(item));
     })
     return result;
 }
 
 function getSellChannelTag(value: number) {
-    let str = getSellChannel(value)
+    let str = getSellChannelDescription(value)
     switch (str) {
         case 'Express':
             return (<Tag color="blue"
@@ -38,7 +38,7 @@ function getSellChannelTag(value: number) {
     }
 }
 
-function getStatus(value: number): string {
+function getStatusDescription(value: number): string {
     switch (value) {
         case 0:
             return 'In Stock';
@@ -54,7 +54,7 @@ function getStatus(value: number): string {
 }
 
 function getStatusTag(value: number) {
-    let str = getStatus(value)
+    let str = getStatusDescription(value)
     switch (str) {
         case 'In Stock':
             return (<Tag color="blue"
@@ -81,8 +81,9 @@ function getStatusTag(value: number) {
 }
 
 export {
-    getSellChannel,
-    getSellChannels,
+    getSellChannelDescription,
+    getSellChannelDescriptions,
     getSellChannelTag,
+    getStatusDescription,
     getStatusTag
 }

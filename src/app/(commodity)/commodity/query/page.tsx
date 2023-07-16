@@ -5,7 +5,7 @@ import {Button, DatePicker, Divider, Form, Input, Pagination, Row, Select, Space
 import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
 import {useState} from "react";
-import {getSellChannelTag, getStatusTag} from "@/app/util/CommodityUtil";
+import {getSellChannelTag, getStatusDescription, getStatusTag} from "@/app/util/CommodityUtil";
 
 function sleep(ms: number) {
     return new Promise<void>((resolve) => {
@@ -109,10 +109,10 @@ export default function CommodityQueryPage() {
                             <Select
                                 style={{width: 140}}
                                 options={[
-                                    {value: 0, label: "In Stock"},
-                                    {value: 1, label: "On Sale"},
-                                    {value: 2, label: "Out Of Stock"},
-                                    {value: 3, label: "Discontinued"}
+                                    {value: 0, label: getStatusDescription(0)},
+                                    {value: 1, label: getStatusDescription(1)},
+                                    {value: 2, label: getStatusDescription(2)},
+                                    {value: 3, label: getStatusDescription(3)}
                                 ]}
                             />
                         </Form.Item>
