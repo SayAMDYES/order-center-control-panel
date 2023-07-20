@@ -1,42 +1,39 @@
-'use client';
+import {ChannelOption, CommodityDto} from "@/app/api/entity/commodity/commodity";
+import {Checkbox, Form, Input, InputNumber, Modal, Radio} from "antd";
+import {getStatusDescription} from "@/app/util/CommodityUtil";
 
-import '@/app/api/entity/commodity/commodity';
-import './NewCommodityPage.scss';
-import {Button, Checkbox, Divider, Form, Input, InputNumber, Radio, Space} from "antd";
-import {EditOutlined} from "@ant-design/icons";
-import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
-import {getDeliveryTypeDescription, getStatusDescription} from "@/app/util/CommodityUtil";
+interface CommodityEditorProps {
+    open: boolean
+    commodity: CommodityDto
+    onFinish: (values: CommodityDto) => void;
+    onCancel: () => void;
+}
 
-const channelOption = [
-    {value: 1, label: getDeliveryTypeDescription(1)},
-    {value: 2, label: getDeliveryTypeDescription(2)},
-]
+export default function CommodityEditor(props: CommodityEditorProps) {
+    const [form] = Form.useForm();
 
-export default function NewCommodityPage() {
-    const onFinish = (reqDto: CommodityCreateReqDto) => {
-        console.log('Success:', reqDto);
-    };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+    const onOk = () => {
+        form.validateFields()
+            .then((values) => {
+                form.resetFields();
+                props.onFinish(values);
+            })
+            .catch((info) => {
+                console.log('Validate Failed:', info);
+            });
+    }
 
     return (
-        <div className={"new-commodity-page-container"}>
-            <div className={"title"}>New commodity information <EditOutlined/></div>
-            <Divider className={"divider"}/>
+        <Modal title="Commodity Edit"
+               okText={"Save"}
+               open={props.open}
+               onOk={onOk}
+               onCancel={props.onCancel}>
             <Form
-                name="basic"
-                labelCol={{span: 8}}
-                wrapperCol={{span: 16}}
-                style={{maxWidth: 800}}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                initialValues={{
-                    stock: 0,
-                    status: 0,
-                } as CommodityCreateReqDto}
-                autoComplete="off"
+                form={form}
+                layout="vertical"
+                name="form_in_modal"
+                initialValues={props.commodity}
             >
                 <Form.Item
                     label="CommodityName"
@@ -96,7 +93,7 @@ export default function NewCommodityPage() {
                     rules={[{required: true, message: 'Please choose sell channel'}]}
                 >
                     <Checkbox.Group
-                        options={channelOption}
+                        options={ChannelOption}
                     />
                 </Form.Item>
 
@@ -112,17 +109,7 @@ export default function NewCommodityPage() {
                         <Radio value={3}>{getStatusDescription(3)}</Radio>
                     </Radio.Group>
                 </Form.Item>
-
-                <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                    <Space>
-                        <Button className={"confirm-button"}
-                                htmlType="submit">
-                            Create
-                        </Button>
-                        <Button htmlType="reset">Reset</Button>
-                    </Space>
-                </Form.Item>
             </Form>
-        </div>
+        </Modal>
     )
 }

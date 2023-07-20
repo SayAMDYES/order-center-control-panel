@@ -4,6 +4,7 @@ import {
     OrderCenterReqDto,
     OrderCenterRespDto
 } from "@/app/api/entity/common";
+import {getDeliveryTypeDescription} from "@/app/util/CommodityUtil";
 
 class CommodityDto {
     id: number;
@@ -38,6 +39,10 @@ class CommodityDto {
         this.status = status;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    static emptyInstance(): CommodityDto {
+        return new CommodityDto(0, "", 0, "", "", 0, [], 0, "", "");
     }
 }
 
@@ -124,6 +129,11 @@ class CommodityQueryReqDto extends OrderCenterQueryReqDto {
 class CommodityQueryRespDto extends OrderCenterQueryRespDto<CommodityDto> {
 }
 
+const ChannelOption = [
+    {value: 1, label: getDeliveryTypeDescription(1)},
+    {value: 2, label: getDeliveryTypeDescription(2)},
+]
+
 export {
     CommodityDto,
     CommodityCreateReqDto,
@@ -134,4 +144,5 @@ export {
     CommodityDeleteRespDto,
     CommodityQueryReqDto,
     CommodityQueryRespDto,
+    ChannelOption,
 }

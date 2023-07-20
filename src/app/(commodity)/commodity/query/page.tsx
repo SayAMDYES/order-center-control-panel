@@ -4,8 +4,9 @@ import './CommodityQueryPage.scss';
 import {Button, DatePicker, Divider, Form, Input, Pagination, Popconfirm, Row, Select, Space, Table} from "antd";
 import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getDeliveryTypeTag, getStatusDescription, getStatusTag} from "@/app/util/CommodityUtil";
+import CommodityEditor from "@/app/component/CommodityEditor";
 
 function sleep(ms: number) {
     return new Promise<void>((resolve) => {
@@ -20,6 +21,9 @@ export default function CommodityQueryPage() {
     let [pageSize, updatePageSize] = useState(10)
     let [total, updateTotal] = useState(0)
     let [loading, updateLoading] = useState(false)
+    let [editCommodity, updateCommodity] = useState(CommodityDto.emptyInstance() as CommodityDto)
+    let [modal, updateModal] = useState(false)
+
     const loadDataSource = async (reqDto: CommodityQueryReqDto) => {
         updateLoading(true)
         let list = [] as CommodityDto[]
@@ -55,13 +59,20 @@ export default function CommodityQueryPage() {
     const {RangePicker} = DatePicker;
 
     const editFunc = (commodity: CommodityDto) => {
-        console.log(commodity)
+        updateCommodity(commodity)
+        updateModal(true)
         return commodity;
     }
 
+    const submitEdit = (commodity: CommodityDto) => {
+        console.log("Submit: " + JSON.stringify(commodity))
+        updateModal(false)
+        loadDataSource(queryReqDto)
+    }
+
     const deleteFunc = (commodity: CommodityDto) => {
-        console.log(commodity)
-        return commodity;
+        console.log("Delete: " + JSON.stringify(commodity))
+        loadDataSource(queryReqDto)
     }
 
     const onPageChange = (page: number, pageSize?: number | undefined) => {
@@ -71,8 +82,17 @@ export default function CommodityQueryPage() {
         loadDataSource(queryReqDto)
     }
 
+    useEffect(() => {
+        loadDataSource(queryReqDto)
+    }, [queryReqDto]);
+
     return (
         <div className={"query-commodity-page-container"}>
+
+            <CommodityEditor commodity={editCommodity} open={modal} onFinish={submitEdit} onCancel={() => {
+                updateModal(false)
+            }}/>
+
             <div className={"submit-container"}>
                 <Form layout={"horizontal"}
                       style={{maxWidth: '100%'}}
