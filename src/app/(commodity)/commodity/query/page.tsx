@@ -1,7 +1,7 @@
 'use client';
 
 import './CommodityQueryPage.scss';
-import {Button, DatePicker, Divider, Form, Input, Pagination, Row, Select, Space, Table} from "antd";
+import {Button, DatePicker, Divider, Form, Input, Pagination, Popconfirm, Row, Select, Space, Table} from "antd";
 import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
 import {useState} from "react";
@@ -181,14 +181,21 @@ export default function CommodityQueryPage() {
                                 <Button type="primary"
                                         onClick={() => editFunc(record)}
                                         className={"confirm-button"}>Edit</Button>
-                                <Button danger={true}
-                                        onClick={() => deleteFunc(record)}
-                                        className={"warning-button"}>Delete</Button>
+                                <Popconfirm
+                                    placement="topRight"
+                                    title={"Are you sure to delete this commodity?"}
+                                    description={"This operation cannot be undone."}
+                                    onConfirm={() => deleteFunc(record)}
+                                    okText="Yes"
+                                    cancelText="No"
+                                >
+                                    <Button className={"warning-button"}>Delete</Button>
+                                </Popconfirm>
                             </Space>
                         )}
                     />
                 </Table>
             </div>
         </div>
-    )
+    );
 }
