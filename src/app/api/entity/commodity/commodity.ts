@@ -80,7 +80,6 @@ class CommodityCreateRespDto extends OrderCenterRespDto<CommodityDto> {
 
 class CommodityUpdateReqDto extends CommodityCreateReqDto {
     id: number;
-    status: number;
 
     constructor(id: number,
                 status: number,
@@ -90,9 +89,8 @@ class CommodityUpdateReqDto extends CommodityCreateReqDto {
                 image: string,
                 stock: number,
                 deliveryType: number[]) {
-        super(name, price, description, image, stock, deliveryType);
+        super(name, price, description, image, stock, deliveryType, status);
         this.id = id;
-        this.status = status;
     }
 }
 
