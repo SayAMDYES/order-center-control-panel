@@ -5,6 +5,11 @@ import {
     OrderCenterRespDto
 } from "@/app/api/entity/common";
 import {getDeliveryTypeDescription} from "@/app/util/CommodityUtil";
+import Http from "@/app/util/http";
+
+const createCommodity = function (reqDto: CommodityCreateReqDto): Promise<CommodityCreateRespDto> {
+    return Http.post("/v1/commodity-center/commodity", reqDto)
+}
 
 class CommodityDto {
     id: number;
@@ -143,4 +148,5 @@ export {
     CommodityQueryReqDto,
     CommodityQueryRespDto,
     ChannelOption,
+    createCommodity,
 }

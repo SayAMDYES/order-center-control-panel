@@ -6,7 +6,7 @@ interface RequestConfig extends AxiosRequestConfig {
 }
 
 const instance: AxiosInstance = axios.create({
-    baseURL: 'https://www.baidu.com',
+    baseURL: 'http://localhost:8080/api',
     timeout: 5000,
 });
 
@@ -35,20 +35,14 @@ class Http {
     static get<T>(url: string, config?: RequestConfig): Promise<T> {
         // @ts-ignore
         return instance.get<OrderCenterRespDto<T>>(url, config).then((res) => {
-            if (res.data.code !== 0) {
-                return Promise.reject(res.data.message);
-            }
-            return res.data;
+            return res;
         });
     }
 
     static post<T>(url: string, data?: any, config?: RequestConfig): Promise<T> {
         // @ts-ignore
         return instance.post<OrderCenterRespDto<T>>(url, data, config).then((res) => {
-            if (res.data.code !== 0) {
-                return Promise.reject(res.data.message);
-            }
-            return res.data;
+            return res;
         });
     }
 }

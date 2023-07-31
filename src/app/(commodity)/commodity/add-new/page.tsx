@@ -2,9 +2,9 @@
 
 import '@/app/api/entity/commodity/commodity';
 import './NewCommodityPage.scss';
-import {Button, Checkbox, Divider, Form, Input, InputNumber, Radio, Space} from "antd";
+import {Button, Checkbox, Divider, Form, Input, InputNumber, message, Radio, Space} from "antd";
 import {EditOutlined} from "@ant-design/icons";
-import {CommodityCreateReqDto} from "@/app/api/entity/commodity/commodity";
+import {CommodityCreateReqDto, createCommodity} from "@/app/api/entity/commodity/commodity";
 import {getDeliveryTypeDescription, getStatusDescription} from "@/app/util/CommodityUtil";
 
 const channelOption = [
@@ -13,16 +13,22 @@ const channelOption = [
 ]
 
 export default function NewCommodityPage() {
+    const [messageApi, contextHolder] = message.useMessage();
     const onFinish = (reqDto: CommodityCreateReqDto) => {
-        console.log('Success:', reqDto);
-    };
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
+        createCommodity(reqDto).then(res => {
+            if (res.code !== 0) {
+                messageApi.error(res.message);
+                return;
+            }
+            messageApi.success('Create commodity success');
+        }).catch(() => {
+            messageApi.error('Create commodity failed');
+        })
+    }
 
     return (
         <div className={"new-commodity-page-container"}>
+            {contextHolder}
             <div className={"title"}>New commodity information <EditOutlined/></div>
             <Divider className={"divider"}/>
             <Form
@@ -31,7 +37,6 @@ export default function NewCommodityPage() {
                 wrapperCol={{span: 16}}
                 style={{maxWidth: 800}}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 initialValues={{
                     stock: 0,
                     status: 0,
