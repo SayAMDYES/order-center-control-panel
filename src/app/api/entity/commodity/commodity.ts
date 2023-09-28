@@ -11,6 +11,10 @@ const createCommodity = function (reqDto: CommodityCreateReqDto): Promise<Commod
     return Http.post("/v1/commodity-center/commodity", reqDto)
 }
 
+const queryCommodities = function (reqDto: CommodityQueryReqDto): Promise<CommodityQueryRespDto> {
+    return Http.post("/v1/commodity-center/commodity/query", reqDto)
+}
+
 class CommodityDto {
     id: number;
     name: string;
@@ -149,4 +153,5 @@ export {
     CommodityQueryRespDto,
     ChannelOption,
     createCommodity,
+    queryCommodities
 }
