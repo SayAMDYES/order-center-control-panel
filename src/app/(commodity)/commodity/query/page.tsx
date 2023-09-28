@@ -1,20 +1,28 @@
 'use client';
 
 import './CommodityQueryPage.scss';
-import {Button, DatePicker, Divider, Form, Input, Pagination, Popconfirm, Row, Select, Space, Table} from "antd";
-import {CommodityDto, CommodityQueryReqDto} from "@/app/api/entity/commodity/commodity";
+import {
+    Button,
+    DatePicker,
+    Divider,
+    Form,
+    Input,
+    message,
+    Pagination,
+    Popconfirm,
+    Row,
+    Select,
+    Space,
+    Table
+} from "antd";
+import {CommodityDto, CommodityQueryReqDto, queryCommodities} from "@/app/api/entity/commodity/commodity";
 import Column from "antd/lib/table/Column";
 import {useEffect, useState} from "react";
 import {getDeliveryTypeTag, getStatusDescription, getStatusTag} from "@/app/util/CommodityUtil";
 import CommodityEditor from "@/app/component/CommodityEditor";
 
-function sleep(ms: number) {
-    return new Promise<void>((resolve) => {
-        setTimeout(resolve, ms);
-    });
-}
-
 export default function CommodityQueryPage() {
+    const [messageApi] = message.useMessage();
     let [queryReqDto, updateQueryReqDto] = useState(new CommodityQueryReqDto(1, 10) as CommodityQueryReqDto)
     let [data, updateData] = useState([] as CommodityDto[])
     let [currentPage, updateCurrentPage] = useState(1)
@@ -26,25 +34,24 @@ export default function CommodityQueryPage() {
 
     const loadDataSource = async (reqDto: CommodityQueryReqDto) => {
         updateLoading(true)
-        let list = [] as CommodityDto[]
-        for (let i = (reqDto.currentPage - 1) < 0 ? 0 : (reqDto.currentPage - 1) * reqDto.pageSize; i < ((reqDto.currentPage < 1) ? 1 : reqDto.currentPage * reqDto.pageSize); i++) {
-            list.push({
-                id: i + 1,
-                name: "commodity" + i,
-                price: i,
-                description: "description" + i,
-                deliveryType: [1, 2],
-                status: 1,
-                createTime: "2021-01-01",
-                updateTime: "2021-01-01"
+
+        queryCommodities(reqDto)
+            .then(res => {
+                    if (res.code == 0 && res.data) {
+                        updateData(res.data.list)
+                        updateCurrentPage(res.data.currentPage)
+                        updatePageSize(res.data.pageSize)
+                        updateTotal(res.data.totalCount)
+                    } else {
+                        messageApi.error(res.message);
+                    }
+                    updateLoading(false)
+                }
+            )
+            .catch(() => {
+                messageApi.error('Query commodity failed');
+                updateLoading(false)
             })
-        }
-        await sleep(1000)
-        updateData(list)
-        updateCurrentPage(reqDto.currentPage)
-        updatePageSize(reqDto.pageSize)
-        updateTotal(100)
-        updateLoading(false)
     }
 
     const onFinish = (reqDto: CommodityQueryReqDto) => {
@@ -84,7 +91,7 @@ export default function CommodityQueryPage() {
 
     useEffect(() => {
         loadDataSource(queryReqDto)
-    }, [queryReqDto]);
+    }, [loadDataSource, queryReqDto]);
 
     return (
         <div className={"query-commodity-page-container"}>
@@ -175,7 +182,7 @@ export default function CommodityQueryPage() {
                        rowKey={"id"}>
                     <Column title="Id" dataIndex="id" key="id"/>
                     <Column title="Name" dataIndex="name" key="name"/>
-                    <Column title="Price" dataIndex="price" key="price"/>
+                    <Column title="Price" dataIndex="price" key="price" render={(value) => `${value} $`}/>
                     <Column title="Description" dataIndex="description" key="description"/>
                     <Column title="DeliveryType" dataIndex="deliveryType" key="deliveryType"
                             render={(tags: number[]) => (
