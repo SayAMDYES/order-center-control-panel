@@ -35,11 +35,16 @@ class OrderCenterQueryRespDto<T extends any> extends OrderCenterRespDto<Page<T>>
 
 class Page<T> {
     currentPage: number;
+    pageSize: number;
+    totalCount: number;
     totalPage: number;
+
     list: T[];
 
-    constructor(currentPage: number, totalPage: number, list: T[]) {
+    constructor(currentPage: number, pageSize: number, totalCount: number, totalPage: number, list: T[]) {
         this.currentPage = currentPage;
+        this.pageSize = pageSize;
+        this.totalCount = totalCount;
         this.totalPage = totalPage;
         this.list = list;
     }
